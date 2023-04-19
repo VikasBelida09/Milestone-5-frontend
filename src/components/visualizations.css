@@ -1,0 +1,52 @@
+.visualizations-panel{
+    display: flex;
+    flex-direction: column;
+}
+.dataset-select{
+    align-self: end;
+    margin-right: 40px !important;
+    margin-top: 15px !important;
+    width:150px
+}
+.da-select{
+   height:40px;  
+}
+.chart-panel{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.spinner-div{
+    height:80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.barchart-style{
+    width:90%;
+    min-width:100%;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.card{
+    padding:10px;
+}
+.card-bar{
+    padding:10px;
+}
+.word-cloud{
+    margin-left: 10px;
+    margin-top: 10px;
+}
+.text-word{
+    text-align: center;
+}
+.chart-panel-1{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    margin-top: 10px;
+    margin-left: 10px;
+    max-width:80%;
+}
