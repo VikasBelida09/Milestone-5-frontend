@@ -1,0 +1,40 @@
+.topic-panel {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  max-width: 100vw;
+}
+.topics {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  color:rgba(0, 0, 0, 0.6);
+}
+.old-topics {
+  display: flex;
+  flex-direction: column;
+  flex: 0.5;
+  border: 1px solid #dbdbdb; /* light gray border */
+  padding: 16px; /* add padding to create some space around the card */
+  border-radius: 8px; /* add border radius for rounded corners */
+  background-color: #ffffff; /* white background */
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2); /* add box shadow for depth effect */
+  margin-right: 10px;
+}
+
+.new-topics {
+  display: flex;
+  flex-direction: column;
+  flex: 0.5;
+  border: 1px solid #dbdbdb; /* light gray border */
+  padding: 16px; /* add padding to create some space around the card */
+  border-radius: 8px; /* add border radius for rounded corners */
+  background-color: #ffffff; /* white background */
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2); /* add box shadow for depth effect */
+}
+.topic-item{
+    margin-top: 5px;
+}

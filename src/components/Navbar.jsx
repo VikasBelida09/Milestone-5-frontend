@@ -1,7 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './navbar.css'
 const Navbar = () => {
-  const navItems=['visualizations','playground']
+  const navItems=[{name:'visualizations',link:'/'},{name:'Topic Modelling',link:'/topics'}]
   return (
     <div className='navbar'>
       <div className='box1'>
@@ -10,7 +11,7 @@ const Navbar = () => {
       <div className='box2'>
         {
             navItems.map((item)=>(
-                <div key={item} className="navbar-item">{item}</div>
+                <Link to={item.link} className="navbar-item"><div key={item.name}>{item.name}</div></Link>
             ))
         }    
       </div>
