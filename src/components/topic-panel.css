@@ -38,3 +38,27 @@
 .topic-item{
     margin-top: 5px;
 }
+.topic-cloud-represntation{
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #dbdbdb; /* light gray border */
+  padding: 16px; /* add padding to create some space around the card */
+  border-radius: 5px; /* add border radius for rounded corners */
+  background-color: #ffffff; /* white background */
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2); /* add box shadow for depth effect */
+  margin: 10px;
+}
+.new-topics-cloud,.old-topics-cloud{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+}
+.card-topic-cloud{
+  margin: 5px;
+  width:300px;
+  height:180px;
+  padding: 10px;
+}
+.line{
+  border-right:1px solid lightgray;
+  min-height:400px;
+}

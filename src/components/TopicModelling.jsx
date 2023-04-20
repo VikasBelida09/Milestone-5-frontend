@@ -13,7 +13,17 @@ import {
 } from "../redux/topicModelling";
 import Typography from "@mui/material/Typography";
 import CircularProgress from "@mui/material/CircularProgress";
+import CardContent from "@mui/material/CardContent";
+import { TagCloud } from "react-tagcloud";
 
+const transform = (arr) => {
+  return arr?.map((a) => {
+    return {
+      value: a[0],
+      count: +a[1] * 100,
+    };
+  });
+};
 const TopicModelling = () => {
   const [dataset, setDataset] = useState("zoom");
   const dispatch = useDispatch();
@@ -65,57 +75,142 @@ const TopicModelling = () => {
           <CircularProgress />
         </div>
       ) : (
-        <div className="topics">
-          <div className="old-topics">
-            <Typography
-              sx={{ fontSize: 16, fontWeight: "bold" }}
-              color="text.secondary"
-              gutterBottom
-            >
-              old features are grouped into these topics
-            </Typography>
-            {topic?.oldTopics?.map((topic, index) => {
-              return (
-                <div key={index} className="topic-item">
-                  <div>{`Topic ${index}:`}</div>
-                  <div>
-                    {topic?.map((t, ind) => (
-                      <span>
-                        {t?.[0] + (ind === topic.length - 1 ? " " : ", ")}
-                      </span>
-                    ))}
+        <>
+          <div className="topics">
+            <div className="old-topics">
+              <Typography
+                sx={{ fontSize: 16, fontWeight: "bold" }}
+                color="text.secondary"
+                gutterBottom
+              >
+                old features are grouped into these topics
+              </Typography>
+              {topic?.oldTopics?.map((topic, index) => {
+                return (
+                  <div key={index} className="topic-item">
+                    <div>{`Topic ${index}:`}</div>
+                    <div>
+                      {topic?.map((t, ind) => (
+                        <span>
+                          {t?.[0] + (ind === topic.length - 1 ? " " : ", ")}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
-          <div className="new-topics">
-            <Typography
-              sx={{ fontSize: 16, fontWeight: "bold"  }}
-              color="text.secondary"
-              gutterBottom
-            >
-              New Features are grouped into these topics
-            </Typography>
-            {topic?.newTopics?.map((topic, index) => {
-              return (
-                <div key={index} className="topic-item">
-                  <div>{`Topic ${index}:`}</div>
-                  <div>
-                  {topic?.map((t, ind) => (
-                      <span>
-                        {t?.[0] + (ind === topic.length - 1 ? " " : ", ")}
-                      </span>
-                    ))}
+                );
+              })}
+            </div>
+            <div className="new-topics">
+              <Typography
+                sx={{ fontSize: 16, fontWeight: "bold" }}
+                color="text.secondary"
+                gutterBottom
+              >
+                New Features are grouped into these topics
+              </Typography>
+              {topic?.newTopics?.map((topic, index) => {
+                return (
+                  <div key={index} className="topic-item">
+                    <div>{`Topic ${index}:`}</div>
+                    <div>
+                      {topic?.map((t, ind) => (
+                        <span>
+                          {t?.[0] + (ind === topic.length - 1 ? " " : ", ")}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
+          <Typography
+            sx={{
+              fontSize: 16,
+              marginLeft: 5,
+              marginTop: 5,
+              fontWeight: "bold",
+            }}
+            color="text.secondary"
+            gutterBottom
+          >
+            Word Cloud Representation of Topic-Related Words, with More
+            Important Words in Bold{" "}
+          </Typography>
+          <Typography
+            sx={{
+              fontSize: 16,
+              marginLeft: 5,
+              marginTop: 1,
+            }}
+            color="text.secondary"
+            gutterBottom
+          >
+            the importance of a word in a topic is determined by the probability of the word occurring within that topic, given the entire corpus.
+          </Typography>
           <div className="topic-cloud-represntation">
-            
+            <div className="new-topic-container">
+              <Typography
+                sx={{ fontSize: 16, fontWeight: "bold" }}
+                color="text.secondary"
+                gutterBottom
+                className="text-word"
+              >
+                Old Feature Topcis
+              </Typography>
+              <div className="new-topics-cloud">
+                {topic?.oldTopics?.map((t, ind) => {
+                  const words = transform(t);
+                  return (
+                    <div className="card-topic-cloud">
+                      <Typography
+                        sx={{ fontSize: 16, fontWeight: "bold" }}
+                        color="text.secondary"
+                        gutterBottom
+                        className="text-word"
+                      >
+                        {`Topic ${ind}`}
+                      </Typography>
+                      <TagCloud tags={words} minSize={10} maxSize={40} />
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="line"></div>
+            <div className="old-feature-container">
+              <Typography
+                sx={{ fontSize: 16, fontWeight: "bold" }}
+                color="text.secondary"
+                gutterBottom
+                className="text-word"
+              >
+                New Feature Topcis
+              </Typography>
+              <div className="old-topics-cloud">
+                {topic?.newTopics?.map((t, ind) => {
+                  const words = transform(t);
+                  return (
+                    <div className="card-topic-cloud">
+                      <Typography
+                        sx={{ fontSize: 16, fontWeight: "bold" }}
+                        color="text.secondary"
+                        gutterBottom
+                        className="text-word"
+                      >
+                        {`Topic ${ind}`}
+                      </Typography>
+                      <CardContent>
+                        <TagCloud tags={words} minSize={10} maxSize={30} />
+                      </CardContent>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   );
