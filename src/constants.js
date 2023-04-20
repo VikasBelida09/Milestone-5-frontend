@@ -1,1 +1,1 @@
-export const APP_URL='http://127.0.0.1:5000/api'
+export const APP_URL='https://backend-m5.onrender.com/api'
